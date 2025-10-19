@@ -1,0 +1,555 @@
+{
+	"info": {
+		"_postman_id": "44fb39ef-b6be-472a-94b2-a053007d7ea8",
+		"name": "Uniandes_DevOps_ProyectoFinal",
+		"description": "# Introduction\nAPI para gestionar las **listas negras** de *Email*.\n\n# Authentication\nTodas las capacidades requieren del uso de un *Bearer Token* que es entregado por el propietario del servicio.\n\n# General Error Codes\n* **200**: Procesamiento ejecutado exitosamente\n* **400**: Petición inválida\n* **401**: Token inválido\n* **500**: Errores internos del API\n* **502**: API no disponible\n\n# Rate limit\nNo aplica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{main_url}}/blacklists/health",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists",
+						"health"
+					]
+				},
+				"description": "# Objetivo:\n\nVerificar el estado de salud del API.\n\n## Parámetros de entrada:\n*Formato del mensaje*: No aplica\n\nNinguno\n\n## Header de entrada:\n\nNinguno\n\n## Respuesta:\n*Formato del mensaje*: application/json\n\n``` json\n{\n    \"message\": \"OK\"\n}\n```\n\n## Códigos HTTP:\n\n* 200: API activa\n* 502: API no disponible"
+			},
+			"response": []
+		},
+		{
+			"name": "Reset",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{main_url}}/blacklists/reset",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists",
+						"reset"
+					]
+				},
+				"description": "# Objetivo:\n\nLimpiar los registros guardados en base de datos.\n\n## Parámetros de entrada:\n*Formato del mensaje*: No aplica\n\nNinguno\n\n## Header de entrada:\n\n* **Auhtorization**: Token Bearer\n\n## Respuesta:\n*Formato del mensaje*: application/json\n\n``` json\n{\n    \"data\": \"Tabla borrada exitosamente\",\n    \"status\": \"success\"\n}\n```\n\n## Códigos HTTP:\n\n* 200: Datos borrados exitosamente"
+			},
+			"response": []
+		},
+		{
+			"name": "Check Email without Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{main_url}}/blacklists/{{email}}",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists",
+						"{{email}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Email with Invalid Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Invalid_Bearer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{main_url}}/blacklists/{{email}}",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists",
+						"{{email}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Email without Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": {{$randomEmail}},\n    \"app_uuid\": {{$randomUUID}},\n    \"blocked_reason\": \"Razón de bloqueo\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main_url}}/blacklists",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists"
+					]
+				},
+				"description": "# Objetivo:\n\nPermite agregar un email a la lista negra global de la organización.\n\n## Parámetros de entrada:\n*Formato del mensaje*: application/json\n\nNinguno\n\n## Header de entrada:\n\n* **Auhtorization**: Token Bearer\n\n## Respuesta:\n*Formato del mensaje*: application/json\n\n``` json\n{\n    \"data\": \"Tabla borrada exitosamente\",\n    \"status\": \"success\"\n}\n```\n\n## Códigos HTTP:\n\n* 200: Datos borrados exitosamente"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Email with Invalid Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Invalid_Bearer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": {{$randomEmail}},\n    \"app_uuid\": {{$randomUUID}},\n    \"blocked_reason\": \"Razón de bloqueo\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main_url}}/blacklists",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Email Created Bad Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"app_uuid\": \"{{$randomUUID}}\",\n    \"blocked_reason\": \"Razón de bloqueo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main_url}}/blacklists",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Email OK Not Found Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.exists).to.eql(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{main_url}}/blacklists/{{$randomEmail}}",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists",
+						"{{$randomEmail}}"
+					]
+				},
+				"description": "# Objetivo:\n\nPermite agregar un email a la lista negra global de la organización.\n\n## Parámetros de entrada:\n*Formato del mensaje*: application/json\n\nNinguno\n\n## Header de entrada:\n\n* **Auhtorization**: Token Bearer\n\n## Respuesta:\n*Formato del mensaje*: application/json\n\n``` json\n{\n    \"data\": \"Tabla borrada exitosamente\",\n    \"status\": \"success\"\n}\n```\n\n## Códigos HTTP:\n\n* 200: Datos borrados exitosamente"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Email Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"app_uuid\": \"{{$randomUUID}}\",\n    \"blocked_reason\": \"Razón de bloqueo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main_url}}/blacklists",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Email Already Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"app_uuid\": \"{{$randomUUID}}\",\n    \"blocked_reason\": \"Razón de bloqueo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main_url}}/blacklists",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Email OK Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.exists).to.eql(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{main_url}}/blacklists/{{email}}",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists",
+						"{{email}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Email Created Random",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{$randomEmail}}\",\n    \"app_uuid\": \"{{$randomUUID}}\",\n    \"blocked_reason\": \"Razón de bloqueo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main_url}}/blacklists",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{main_url}}/blacklists",
+					"host": [
+						"{{main_url}}"
+					],
+					"path": [
+						"blacklists"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "main_url",
+			"value": "{{aws_url}}"
+		},
+		{
+			"key": "local_url",
+			"value": "http://127.0.0.1:5001/api"
+		},
+		{
+			"key": "token",
+			"value": "f18dadb0-c911-46ac-854f-e552ef323cda"
+		},
+		{
+			"key": "email",
+			"value": "ca.chaparros1@uniandes.edu.co"
+		},
+		{
+			"key": "aws_url",
+			"value": "http://uniandes-devops-app.us-east-1.elasticbeanstalk.com/api"
+		}
+	]
+}

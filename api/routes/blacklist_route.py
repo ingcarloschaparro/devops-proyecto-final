@@ -9,6 +9,10 @@ blacklist_bp = Blueprint("blacklist", __name__)
 
 @blacklist_bp.before_request
 def check_bearer_token():
+    print(f"check_bearer_token: {request.path}")
+    if request.path == "/api/blacklists/health":
+        return
+
     auth_header = request.headers.get('Authorization')
 
     if not auth_header or not auth_header.startswith('Bearer '):

@@ -9,3 +9,7 @@ Proyecto final de la materia DevOps: Agilizando el Despliegue Continuo de Aplica
 ``` bash
 gunicorn -c gunicorn.conf.py main:app
 ```
+
+
+User: postgres
+postgres123456*+
