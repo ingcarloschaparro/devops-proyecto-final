@@ -94,7 +94,7 @@ def test_get_by_email_not_found(client, app, headers):
     data = json.loads(response.data)
     assert data['status'] == 'success'
     response_data = data['data']
-    assert response_data['exists'] == False
+    assert response_data['exists'] is False
 
 
 def test_add_new(client, app, add_request, headers):
@@ -137,7 +137,7 @@ def test_get_by_email_found(client, app, headers):
     data = json.loads(response.data)
     assert data['status'] == 'success'
     response_data = data['data']
-    assert response_data['exists'] == True
+    assert response_data['exists'] is True
 
 
 def test_get_all(client, app, headers):
