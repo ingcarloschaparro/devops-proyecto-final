@@ -10,6 +10,11 @@ Proyecto final de la materia DevOps: Agilizando el Despliegue Continuo de Aplica
 gunicorn -c gunicorn.conf.py main:app
 ```
 
+## Como ejecutar las pruebas
+
+``` bash
+pytest --cov=api -x --cov-report=html --cov-fail-under=90
+```
 
 User: postgres
 postgres123456*+

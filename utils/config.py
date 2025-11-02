@@ -7,3 +7,4 @@ class Config:
         "postgresql://postgres:users12345@localhost:5432/postgres"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    TESTING = False
