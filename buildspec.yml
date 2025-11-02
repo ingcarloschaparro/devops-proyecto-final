@@ -18,7 +18,8 @@ phases:
 
   post_build:
     commands:
-      - echo Compilacion y pruebas completadas.
+      - echo Compilacion y pruebas unitarias finalizadas exitosamente.
+
 artifacts:
   files:
     - '**/*'
@@ -27,4 +28,4 @@ reports:
   Cobertura_Unitarias:
     files:
       - coverage.xml
-    file-format: COBERTURA
+    file-format: COVERAGE
