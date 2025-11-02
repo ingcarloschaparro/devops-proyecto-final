@@ -6,6 +6,8 @@ phases:
       - echo Instalando dependencias de Python...
       - pip install -r requirements.txt
       - pip install flake8
+      - echo Instalando Newman para ejecutar tests de Postman...
+      - npm install -g newman
 
   pre_build:
     commands:
@@ -14,10 +16,17 @@ phases:
 
   build:
     commands:
-      - echo Ejecutando Flake8 para verificar estilo y codigo
+      - echo Ejecutando Flake8 para verificar estilo y codigo...
       - flake8 .
+      - echo Flake8 completado.
+
       - echo Ejecutando pruebas unitarias con cobertura...
       - pytest --cov=api -x --cov-report=xml --cov-fail-under=90
+      - echo Pruaba unitarias completadas.
+
+      - echo Ejecutando tests de Postman con Newman...
+      - newman run tests/Uniandes_DevOps_ProyectoFinal.postman_collection.json -r cli,junit --reporter-junit-export postman_results.xml
+      - echo Tests de Postman completados.
 
   post_build:
     commands:

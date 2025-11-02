@@ -5,7 +5,8 @@ from api.app import create_app
 from persistent.db_utils import db
 from tests.testing_config import TestingConfig
 
-EMAIL : str = "ca.chaparros1@uniandes.edu.co"
+EMAIL: str = "ca.chaparros1@uniandes.edu.co"
+
 
 @pytest.fixture(scope='session')
 def app():
@@ -13,7 +14,7 @@ def app():
     app = create_app(TestingConfig)
 
     with app.app_context():
-        #db.create_all()
+        # db.create_all()
         yield app
         db.drop_all()
 
@@ -23,6 +24,7 @@ def client(app):
     """Fixture que proporciona un cliente de prueba de Flask."""
     return app.test_client()
 
+
 @pytest.fixture(scope='session')
 def headers():
     headers = {
@@ -31,13 +33,15 @@ def headers():
 
     return headers
 
+
 @pytest.fixture(scope='session')
 def invalid_headers():
     headers = {
-        'Authorization': f'Bearer INVALID_TOKEN'
+        'Authorization': 'Bearer INVALID_TOKEN'
     }
 
     return headers
+
 
 @pytest.fixture(scope='function')
 def add_request():
@@ -49,16 +53,17 @@ def add_request():
 
     return request
 
+
 @pytest.fixture(scope='function')
 def init_database(app):
     """Fixture que garantiza que la BD esté vacía y lista para el tests."""
     with app.app_context():
 
-        ##producto1 = Producto(nombre='Laptop', precio=1200.00)
-        ##db.session.add(producto1)
-        ##db.session.commit()
+        # producto1 = Producto(nombre='Laptop', precio=1200.00)
+        # db.session.add(producto1)
+        # db.session.commit()
 
         yield db
 
-        ##db.session.remove()
-        ##db.session.rollback()
+        # db.session.remove()
+        # db.session.rollback()

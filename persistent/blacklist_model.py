@@ -2,6 +2,7 @@ from sqlalchemy import DateTime, func
 
 from persistent.db_utils import db
 
+
 class Blacklist(db.Model):
     __tablename__ = 'blacklist'
 

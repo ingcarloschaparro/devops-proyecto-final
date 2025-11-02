@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Uniandes_DevOps_ProyectoFinal" tests="13" time="2.389">
+  <testsuite name="Health" id="27e68fdc-f103-4d49-b216-4bdf9a3daf1a" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.425">
+    <testcase name="Status code is 200" time="0.425" classname="Health"/>
+  </testsuite>
+  <testsuite name="Reset" id="1c6adc7c-18f8-4787-b285-ca8ff0cf307e" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.104">
+    <testcase name="Status code is 200" time="0.104" classname="Reset"/>
+  </testsuite>
+  <testsuite name="Check Email without Token" id="9b74b3ba-d773-4930-9b9e-c99ea315fb05" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.102">
+    <testcase name="Status code is 401" time="0.102" classname="CheckEmailWithoutToken"/>
+  </testsuite>
+  <testsuite name="Check Email with Invalid Token" id="f40d62f2-558e-4f1a-84ff-b6010e42a8d7" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.095">
+    <testcase name="Status code is 401" time="0.095" classname="CheckEmailWithInvalidToken"/>
+  </testsuite>
+  <testsuite name="Add Email without Token" id="6c00fa32-be06-4b69-b9ed-53b85b85686a" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.194">
+    <testcase name="Status code is 401" time="0.194" classname="AddEmailWithoutToken"/>
+  </testsuite>
+  <testsuite name="Add Email with Invalid Token" id="0296cb42-ffad-4898-bbba-9923caaae11f" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.183">
+    <testcase name="Status code is 401" time="0.183" classname="AddEmailWithInvalidToken"/>
+  </testsuite>
+  <testsuite name="Add Email Created Bad Request" id="adce8c36-12e6-40c8-9bbd-a17c9a681892" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.188">
+    <testcase name="Status code is 400" time="0.188" classname="AddEmailCreatedBadRequest"/>
+  </testsuite>
+  <testsuite name="Check Email OK Not Found Copy" id="7a5985c8-877c-4bfa-be35-a74c9ec8cf72" timestamp="2025-11-02T22:56:31.860Z" tests="2" failures="0" errors="0" time="0.100">
+    <testcase name="Status code is 200" time="0.100" classname="CheckEmailOkNotFoundCopy"/>
+    <testcase name="Your test name" time="0.100" classname="CheckEmailOkNotFoundCopy"/>
+  </testsuite>
+  <testsuite name="Add Email Created" id="091c9ffb-0ee7-42b2-99be-7bfdf2c5b296" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.212">
+    <testcase name="Status code is 201" time="0.212" classname="AddEmailCreated"/>
+  </testsuite>
+  <testsuite name="Add Email Already Created" id="e443737b-a437-41b3-914c-05cfa0da449e" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.195">
+    <testcase name="Status code is 409" time="0.195" classname="AddEmailAlreadyCreated"/>
+  </testsuite>
+  <testsuite name="Check Email OK Found" id="d724dcfb-82e3-4dd5-a087-42d39c150f31" timestamp="2025-11-02T22:56:31.860Z" tests="2" failures="0" errors="0" time="0.100">
+    <testcase name="Status code is 200" time="0.100" classname="CheckEmailOkFound"/>
+    <testcase name="Your test name" time="0.100" classname="CheckEmailOkFound"/>
+  </testsuite>
+  <testsuite name="Add Email Created Random" id="a031660f-efc7-430c-a69f-757655eed1a3" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.291">
+    <testcase name="Status code is 201" time="0.291" classname="AddEmailCreatedRandom"/>
+  </testsuite>
+  <testsuite name="Get All" id="bf57003e-b5dc-47f2-b35d-29dd1367b480" timestamp="2025-11-02T22:56:31.860Z" tests="1" failures="0" errors="0" time="0.200">
+    <testcase name="Status code is 200" time="0.200" classname="GetAll"/>
+  </testsuite>
+</testsuites>
