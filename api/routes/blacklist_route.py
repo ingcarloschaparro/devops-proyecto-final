@@ -1,11 +1,15 @@
-from flask import Blueprint, request, jsonify, Flask
+from flask import Blueprint, request
 
 from persistent.blacklist_model import Blacklist
 from utils.config import Config
 from utils.responses import response_ok, response_error
-from business.blacklist_business import create_blacklist, find_blacklist_by_email, delete_all_blacklist, find_all_blacklist
+from business.blacklist_business import (create_blacklist,
+                                         find_blacklist_by_email,
+                                         delete_all_blacklist,
+                                         find_all_blacklist)
 
 blacklist_bp = Blueprint("blacklist", __name__)
+
 
 @blacklist_bp.before_request
 def check_bearer_token():
@@ -28,6 +32,7 @@ def check_bearer_token():
 def health():
     return {"message": "OK"}
 
+
 @blacklist_bp.route("/<string:email>", methods=["GET"])
 def get_by_email(email):
     if not email:
@@ -44,6 +49,7 @@ def get_by_email(email):
         return response_ok({
             "exists": False
         }, 200)
+
 
 @blacklist_bp.route("/", methods=["POST"])
 def add():
@@ -73,10 +79,12 @@ def add():
         "id": new_id
     }, 201)
 
+
 @blacklist_bp.route("/reset", methods=["DELETE"])
 def reset():
     delete_all_blacklist()
     return response_ok("Tabla borrada exitosamente", 200)
+
 
 @blacklist_bp.route("/", methods=["GET"])
 def get_all():
