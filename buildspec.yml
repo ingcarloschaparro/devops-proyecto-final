@@ -16,6 +16,7 @@ phases:
       - python --version
 
   build:
+    on-failure: ABORT
     commands:
       - echo Ejecutando Flake8 para verificar estilo y codigo...
       - flake8 **/*.py
@@ -36,3 +37,4 @@ phases:
 artifacts:
   files:
     - '**/*'
+  name: devops-proyecto-final-app
