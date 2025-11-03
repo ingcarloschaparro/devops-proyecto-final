@@ -7,7 +7,11 @@ Proyecto final de la materia DevOps: Agilizando el Despliegue Continuo de Aplica
 2. Ejecute el siguiente comando:
 
 ``` bash
+# Para ejecutar en modo PRD
 gunicorn -c gunicorn.conf.py main:app
+
+# Para ejecutar en modo Test
+export TEST_ENV=True && gunicorn -c gunicorn.conf.py main:app
 ```
 
 ## Como ejecutar las pruebas
