@@ -533,7 +533,7 @@
 	"variable": [
 		{
 			"key": "main_url",
-			"value": "{{aws_url}}"
+			"value": "{{local_url}}"
 		},
 		{
 			"key": "local_url",
