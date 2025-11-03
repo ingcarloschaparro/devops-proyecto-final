@@ -1,0 +1,17 @@
+[2025-11-02 22:01:29 -0500] [1454603] [INFO] Starting gunicorn 23.0.0
+[2025-11-02 22:01:29 -0500] [1454603] [ERROR] Connection in use: ('0.0.0.0', 5001)
+[2025-11-02 22:01:29 -0500] [1454603] [ERROR] connection to ('0.0.0.0', 5001) failed: [Errno 98] Address already in use
+[2025-11-02 22:01:30 -0500] [1454603] [ERROR] Connection in use: ('0.0.0.0', 5001)
+[2025-11-02 22:01:30 -0500] [1454603] [ERROR] connection to ('0.0.0.0', 5001) failed: [Errno 98] Address already in use
+[2025-11-02 22:01:31 -0500] [1454603] [ERROR] Connection in use: ('0.0.0.0', 5001)
+[2025-11-02 22:01:31 -0500] [1454603] [ERROR] connection to ('0.0.0.0', 5001) failed: [Errno 98] Address already in use
+[2025-11-02 22:01:32 -0500] [1454603] [ERROR] Connection in use: ('0.0.0.0', 5001)
+[2025-11-02 22:01:32 -0500] [1454603] [ERROR] connection to ('0.0.0.0', 5001) failed: [Errno 98] Address already in use
+[2025-11-02 22:01:33 -0500] [1454603] [ERROR] Connection in use: ('0.0.0.0', 5001)
+[2025-11-02 22:01:33 -0500] [1454603] [ERROR] connection to ('0.0.0.0', 5001) failed: [Errno 98] Address already in use
+[2025-11-02 22:01:34 -0500] [1454603] [ERROR] Can't connect to ('0.0.0.0', 5001)
+[2025-11-02 22:02:46 -0500] [1455242] [INFO] Starting gunicorn 23.0.0
+[2025-11-02 22:02:46 -0500] [1455242] [INFO] Listening at: http://0.0.0.0:5001 (1455242)
+[2025-11-02 22:02:46 -0500] [1455242] [INFO] Using worker: sync
+[2025-11-02 22:02:46 -0500] [1455244] [INFO] Booting worker with pid: 1455244
+[2025-11-02 22:02:46 -0500] [1455245] [INFO] Booting worker with pid: 1455245
