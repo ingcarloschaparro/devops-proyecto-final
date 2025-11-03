@@ -28,7 +28,7 @@ phases:
 
       - echo Ejecutando tests de Postman con Newman...
       - newman run tests/Uniandes_DevOps_ProyectoFinal.postman_collection.json -r cli,junit --reporter-junit-export postman_results.xml
-      - echo Tests de Postman completados.
+      - echo Tests de Postman completados .
 
   post_build:
     commands:
