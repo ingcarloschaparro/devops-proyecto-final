@@ -11,7 +11,7 @@ def test_home(client, app):
 
     # Assertions:
     # HTTP Code
-    assert response.status_code == 400
+    assert response.status_code == 200
 
 
 def test_health(client, app):
