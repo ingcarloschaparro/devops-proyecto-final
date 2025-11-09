@@ -20,7 +20,7 @@ def test_health(client, app):
 
     # Assertions:
     # HTTP Code
-    assert response.status_code == 200
+    assert response.status_code == 201
     data = json.loads(response.data)
     assert data['message'] == 'OK'
 
