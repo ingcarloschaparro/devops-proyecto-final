@@ -1,41 +1,70 @@
 version: 0.2
 
+env:
+  variables:
+    ECS_REPO_URL: 913524924234.dkr.ecr.us-east-2.amazonaws.com
+    PROJECT_NAME: devops-proyecto-final
+
 phases:
   install:
     commands:
-      - echo Instalando dependencias de Python...
+      - echo Installing python dependencies...
       - pip install -r requirements.txt
-      - echo Instalando flake8 para ejecutar verificaciones de código...
+      - echo Installing flake8 to execute code review...
       - pip install flake8
-      - echo Instalando Newman para ejecutar tests de Postman...
+      - echo Installing Newman to execute Postman tests...
       - npm install -g newman
 
   pre_build:
-    commands:
-      - echo Verificando versión de Python
-      - python --version
-
-  build:
     on-failure: ABORT
     commands:
-      - echo Ejecutando Flake8 para verificar estilo y codigo...
+      - echo Checking Python version...
+      - python --version
+
+      - echo Executing code reviews with Flake8...
       - flake8 **/*.py
       - echo Flake8 completado.
 
-      - echo Ejecutando pruebas unitarias con cobertura...
+      - echo Executing unit tests with coverage...
       - pytest --cov=api -x --cov-report=xml --cov-fail-under=90
       - echo Pruebas unitarias completadas.
 
-      - echo Ejecutando tests de Postman con Newman...
+      - echo Executing Postman tests...
       - export TEST_ENV=True && nohup gunicorn -c gunicorn.conf.py main:app &
       - newman run tests/Uniandes_DevOps_ProyectoFinal.postman_collection.json -r cli,junit --reporter-junit-export postman_results.xml
       - echo Tests de Postman completados.
 
+      - echo Login to ECR...
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ECS_REPO_URL
+
+  build:
+    on-failure: ABORT
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t uniandes/$PROJECT_NAME .
+      - docker tag uniandes/$PROJECT_NAME:latest $ECS_REPO_URL/uniandes/$PROJECT_NAME:latest
+
   post_build:
     commands:
-      - echo Compilacion y pruebas unitarias finalizadas exitosamente.
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $ECS_REPO_URL/uniandes/$PROJECT_NAME:latest
+      - echo Writing Image Definitions file...
+      - printf '[{"name":"$PROJECT_NAME","imageUri":"$ECS_REPO_URL/uniandes/$PROJECT_NAME:latest"}]' > imagedefinitions.json
+      - printf '{"ImageURI":"$ECS_REPO_URL/uniandes/$PROJECT_NAME:latest"}' > imageDetail.json
+      - cat imagedefinitions.json
 
 artifacts:
   files:
     - '**/*'
-  name: devops-proyecto-final-app
+    - imagedefinitions.json
+    - imageDetail.json
+  secondary-artifacts:
+    DefinitionArtifact:
+      files:
+        - appspec.yaml
+        - taskdef.json
+      ImageArtifact:
+        files:
+          - imageDetail.json

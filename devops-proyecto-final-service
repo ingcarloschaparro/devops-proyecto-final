@@ -1,0 +1,30 @@
+{
+    "taskDefinition": "devops-proyecto-final-taskdef:1",
+    "cluster": "devops-proyecto-final-cluster",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:913524924234:targetgroup/devops-proyecto-final-tg1/c830b1662eabcd65",
+            "containerName": "devops-proyecto-final",
+            "containerPort": 5001
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "CODE_DEPLOY"
+    },
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-0e539479b6a5ea2b1",
+                "subnet-0d143ac24006911c3",
+                "subnet-05e0f073534ebf8b7"
+            ],
+            "securityGroups": [
+                "sg-0c94a025b4d7bcbae"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    }
+}

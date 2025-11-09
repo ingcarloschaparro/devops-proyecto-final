@@ -1,0 +1,26 @@
+{
+    "executionRoleArn": "arn:aws:iam::913524924234:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "portMappings": [
+          {
+            "hostPort": 5001,
+            "protocol": "tcp",
+            "containerPort": 5001
+          }
+        ],
+
+        "image": "<IMAGE1_NAME>",
+        "essential": true,
+        "name": "devops-proyecto-final"
+      }
+    ],
+
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "512",
+    "memory": "1024",
+    "family": "devops-proyecto-final-taskdef"
+  }

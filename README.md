@@ -34,6 +34,20 @@ flake8 **/*.py
 newman run tests/Uniandes_DevOps_ProyectoFinal.postman_collection.json -r cli,junit --reporter-junit-export postman_results.xml
 ```
 
+## Como ejecutar con Docker
 
+``` bash
+docker build -t devops-proyecto-final-img:latest .
+
+docker run -it -d --name devops-proyecto-final -p 5001:5001 -e DATABASE_URL=postgresql://postgres:users12345@192.168.1.13:5432/postgres devops-proyecto-final-img:latest
+``` 
+
+Para detener los servicios:
+
+``` bash
+docker stop devops-proyecto-final && docker rm devops-proyecto-final
+
+docker rmi devops-proyecto-final-img
+``` 
 User: postgres
 postgres123456*+

@@ -4,6 +4,5 @@ SQLAlchemy
 psycopg2-binary
 flask_sqlalchemy
 dotenv
-awsebcli
 pytest
 pytest-cov
