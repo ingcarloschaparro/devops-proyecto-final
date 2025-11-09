@@ -22,7 +22,8 @@ def test_health(client, app):
     # HTTP Code
     assert response.status_code == 200
     data = json.loads(response.data)
-    assert data['message'] == 'Integración Continua exitoso y de entrega continua fallido'
+    assert (data['message'] ==
+            'Integración Continua exitoso y de entrega continua fallido')
 
 
 def test_reset(client, app, headers):
