@@ -22,5 +22,5 @@
     "networkMode": "awsvpc",
     "cpu": "512",
     "memory": "1024",
-    "family": "otro-taskdef-que-no-existe"
+    "family": "devops-proyecto-final-taskdef"
   }
