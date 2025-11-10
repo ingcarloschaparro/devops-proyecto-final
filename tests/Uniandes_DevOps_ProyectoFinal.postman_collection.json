@@ -533,7 +533,7 @@
 	"variable": [
 		{
 			"key": "main_url",
-			"value": "{{local_url}}"
+			"value": "{{aws_url}}"
 		},
 		{
 			"key": "local_url",
@@ -549,7 +549,7 @@
 		},
 		{
 			"key": "aws_url",
-			"value": "http://uniandes-devops-app.us-east-1.elasticbeanstalk.com/api"
+			"value": "http://devops-proyecto-final-lb-221057155.us-east-2.elb.amazonaws.com/api"
 		}
 	]
 }
