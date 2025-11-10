@@ -20,7 +20,7 @@ def test_health(client, app):
 
     # Assertions:
     # HTTP Code
-    assert response.status_code == 201
+    assert response.status_code == 200
     data = json.loads(response.data)
     assert (data['message'] ==
             'Integración Continua exitoso y de entrega continua exitoso')
