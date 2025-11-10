@@ -23,7 +23,7 @@ def test_health(client, app):
     assert response.status_code == 200
     data = json.loads(response.data)
     assert (data['message'] ==
-            'Integración Continua exitoso y de entrega continua exitoso')
+            'Todo Bien')
 
 
 def test_reset(client, app, headers):

@@ -30,7 +30,7 @@ def check_bearer_token():
 
 @blacklist_bp.route("/health")
 def health():
-    return {"message": "Integración Continua exitoso y de entrega continua exitoso"}
+    return {"message": "Todo Bien"}
 
 
 @blacklist_bp.route("/<string:email>", methods=["GET"])
