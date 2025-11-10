@@ -51,8 +51,8 @@ phases:
       - echo Pushing the Docker image...
       - docker push $ECS_REPO_URL/uniandes/$PROJECT_NAME:latest
       - echo Writing Image Definitions file...
-      - printf '[{"name":"%s","imageUri":"%s/uniandes/%s:latest"}]' '$PROJECT_NAME' '$ECS_REPO_URL' '$PROJECT_NAME' > imagedefinitions.json
-      - printf '{"ImageURI":"%s/uniandes/%s:latest"}' '$ECS_REPO_URL' '$PROJECT_NAME' > imageDetail.json
+      - printf '[{"name":"%s","imageUri":"%s/uniandes/%s:latest"}]' $PROJECT_NAME $ECS_REPO_URL $PROJECT_NAME > imagedefinitions.json
+      - printf '{"ImageURI":"%s/uniandes/%s:latest"}' $ECS_REPO_URL $PROJECT_NAME > imageDetail.json
       - cat imagedefinitions.json
 
 artifacts:
