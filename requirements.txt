@@ -6,3 +6,4 @@ flask_sqlalchemy
 dotenv
 pytest
 pytest-cov
+newrelic

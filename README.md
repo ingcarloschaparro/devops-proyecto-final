@@ -39,7 +39,7 @@ newman run tests/Uniandes_DevOps_ProyectoFinal.postman_collection.json -r cli,ju
 ``` bash
 docker build -t devops-proyecto-final-img:latest .
 
-docker run -it -d --name devops-proyecto-final -p 5001:5001 -e DATABASE_URL=postgresql://postgres:users12345@192.168.1.13:5432/postgres devops-proyecto-final-img:latest
+docker run -it -d --name devops-proyecto-final -p 5001:5001 -e DATABASE_URL=postgresql://postgres:users12345@192.168.1.13:5432/postgres -e NEW_RELIC_LICENSE_KEY=d7a91e42c315038552618a364774cc30FFFFNRAL devops-proyecto-final-img:latest
 ``` 
 
 Para detener los servicios:
